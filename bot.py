@@ -107,6 +107,9 @@ async def update_status():
             await status_message.edit(embed=embed)
         except:
             status_message = await channel.send(embed=embed)
+@update_status.error
+async def update_status_error(error):
+    print(f"UPDATE LOOP CRASHED: {error}")
 @bot.event
 async def on_message(message):
     if message.author.bot:
