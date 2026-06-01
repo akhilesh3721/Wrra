@@ -124,11 +124,13 @@ async def serverstatus(ctx):
 
     except:
         await ctx.send("🔴 Server Offline")
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
-
+    if not update_status.is_running():
+        update_status.start()
 @bot.command()
 async def ping(ctx):
     await ctx.send(f"🏓 Pong! {round(bot.latency * 1000)}ms")
