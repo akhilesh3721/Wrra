@@ -31,6 +31,41 @@ def is_owner(ctx):
     return ctx.author.id == OWNER_ID
 
 
+from mcstatus import JavaServer
+
+@bot.command()
+async def serverstatus(ctx):
+    try:
+        server = JavaServer.lookup("free-us4.halix.cloud:19529")
+        status = server.status()
+
+        embed = discord.Embed(
+            title="🟢 WRRA SMP",
+            color=0x00ff00
+        )
+
+        embed.add_field(
+            name="🛰 Status",
+            value="ONLINE",
+            inline=False
+        )
+
+        embed.add_field(
+            name="👥 Players",
+            value=f"{status.players.online}/{status.players.max}",
+            inline=False
+        )
+
+        embed.add_field(
+            name="🔧 Version",
+            value="Paper 26.1.2",
+            inline=False
+        )
+
+        await ctx.send(embed=embed)
+
+    except:
+        await ctx.send("🔴 Server Offline")
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
