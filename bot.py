@@ -32,7 +32,65 @@ def is_owner(ctx):
 
 
 from mcstatus import JavaServer
+from discord.ext import commands, tasks
+STATUS_CHANNEL_ID = 1510886773012824176
+status_message = None
 
+@tasks.loop(minutes=1)
+async def update_status():
+
+    global status_message
+
+    channel = bot.get_channel(STATUS_CHANNEL_ID)
+
+    try:
+        server = JavaServer.lookup("free-us4.halix.cloud:19529")
+        status = server.status()
+
+        embed = discord.Embed(
+            title="🟢 WRRA SMP",
+            description="⚔️ Survival • Economy • Adventure ⚔️",
+            color=0x00ff00
+        )
+
+        embed.add_field(
+            name="🛰️ Status",
+            value="🟢 ONLINE",
+            inline=False
+        )
+
+        embed.add_field(
+            name="👥 Players",
+            value=f"{status.players.online}/{status.players.max}",
+            inline=False
+        )
+
+        embed.add_field(
+            name="⚡ Latency",
+            value=f"{round(status.latency)}ms",
+            inline=False
+        )
+
+        embed.add_field(
+            name="🔧 Version",
+            value="Paper 26.1.2",
+            inline=False
+        )
+
+    except:
+        embed = discord.Embed(
+            title="🔴 WRRA SMP",
+            description="Server Offline",
+            color=0xff0000
+        )
+
+    if status_message is None:
+        status_message = await channel.send(embed=embed)
+    else:
+        try:
+            await status_message.edit(embed=embed)
+        except:
+            status_message = await channel.send(embed=embed)
 @bot.command()
 async def serverstatus(ctx):
     try:
