@@ -9,7 +9,7 @@ PTERO_API = os.getenv("PTERO_API")
 PANEL_URL = "https://panel.halix-free.xyz"
 SERVER_ID = "83c544fd"
 
-OWNER_ID = 1365256422585274398
+OWNER_ID = 1365256422585274398  # Your Discord User ID
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -21,142 +21,149 @@ bot = commands.Bot(
 )
 
 HEADERS = {
-"Authorization": f"Bearer {PTERO_API}",
-"Accept": "Application/vnd.pterodactyl.v1+json",
-"Content-Type": "application/json"
+    "Authorization": f"Bearer {PTERO_API}",
+    "Accept": "Application/vnd.pterodactyl.v1+json",
+    "Content-Type": "application/json"
 }
+
 
 def is_owner(ctx):
     return ctx.author.id == OWNER_ID
+
 
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
 
+
 @bot.command()
 async def ping(ctx):
-    await ctx.send(f"🏓 Pong! "{round(bot.latency * 1000)}ms"")
+    await ctx.send(f"🏓 Pong! {round(bot.latency * 1000)}ms")
+
 
 @bot.command()
 async def help(ctx):
-embed = discord.Embed(
-title="🤖 WRRA Server Bot",
-description="Minecraft Server Management",
-color=0x00ff00
-)
+    embed = discord.Embed(
+        title="🤖 WRRA Server Bot",
+        description="Minecraft Server Management",
+        color=0x00ff00
+    )
 
-embed.add_field(
-    name="📊 Information",
-    value="!ping\n!status",
-    inline=False
-)
+    embed.add_field(
+        name="📊 Information",
+        value="!ping\n!status",
+        inline=False
+    )
 
-embed.add_field(
-    name="⚙️ Server Controls",
-    value="!start\n!stop\n!restart",
-    inline=False
-)
+    embed.add_field(
+        name="⚙️ Server Controls",
+        value="!start\n!stop\n!restart",
+        inline=False
+    )
 
-embed.add_field(
-    name="🖥️ Console",
-    value="!cmd <command>",
-    inline=False
-)
+    embed.add_field(
+        name="🖥️ Console",
+        value="!cmd <command>",
+        inline=False
+    )
 
-await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
+
 
 @bot.command()
 async def status(ctx):
-r = requests.get(
-f"{PANEL_URL}/api/client/servers/{SERVER_ID}/resources",
-headers=HEADERS
-)
+    r = requests.get(
+        f"{PANEL_URL}/api/client/servers/{SERVER_ID}/resources",
+        headers=HEADERS
+    )
 
-if r.status_code != 200:
-    return await ctx.send(f"❌ Error: {r.status_code}")
+    if r.status_code != 200:
+        return await ctx.send(f"❌ Error: {r.status_code}")
 
-data = r.json()["attributes"]
+    data = r.json()["attributes"]
 
-state = data["current_state"]
-ram = round(data["resources"]["memory_bytes"] / 1024 / 1024, 2)
-cpu = round(data["resources"]["cpu_absolute"], 2)
+    state = data["current_state"]
+    ram = round(data["resources"]["memory_bytes"] / 1024 / 1024, 2)
+    cpu = round(data["resources"]["cpu_absolute"], 2)
 
-embed = discord.Embed(
-    title="📊 Server Status",
-    color=0x00ff00
-)
+    embed = discord.Embed(
+        title="📊 Server Status",
+        color=0x00ff00
+    )
 
-embed.add_field(name="State", value=state, inline=True)
-embed.add_field(name="RAM", value=f"{ram} MB", inline=True)
-embed.add_field(name="CPU", value=f"{cpu}%", inline=True)
+    embed.add_field(name="State", value=state, inline=True)
+    embed.add_field(name="RAM", value=f"{ram} MB", inline=True)
+    embed.add_field(name="CPU", value=f"{cpu}%", inline=True)
 
-await ctx.send(embed=embed)
+    await ctx.send(embed=embed)
+
 
 @bot.command()
 async def start(ctx):
-if not is_owner(ctx):
-return await ctx.send("❌ Not allowed")
+    if not is_owner(ctx):
+        return await ctx.send("❌ Not allowed")
 
-r = requests.post(
-    f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
-    headers=HEADERS,
-    json={"signal": "start"}
-)
+    r = requests.post(
+        f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
+        headers=HEADERS,
+        json={"signal": "start"}
+    )
 
-await ctx.send(
-    "🟢 Server starting!"
-    if r.status_code in [200, 204]
-    else f"❌ Error: {r.status_code}"
-)
+    if r.status_code in [200, 204]:
+        await ctx.send("🟢 Server starting!")
+    else:
+        await ctx.send(f"❌ Error: {r.status_code}")
+
 
 @bot.command()
 async def stop(ctx):
-if not is_owner(ctx):
-return await ctx.send("❌ Not allowed")
+    if not is_owner(ctx):
+        return await ctx.send("❌ Not allowed")
 
-r = requests.post(
-    f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
-    headers=HEADERS,
-    json={"signal": "stop"}
-)
+    r = requests.post(
+        f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
+        headers=HEADERS,
+        json={"signal": "stop"}
+    )
 
-await ctx.send(
-    "🔴 Server stopping!"
-    if r.status_code in [200, 204]
-    else f"❌ Error: {r.status_code}"
-)
+    if r.status_code in [200, 204]:
+        await ctx.send("🔴 Server stopping!")
+    else:
+        await ctx.send(f"❌ Error: {r.status_code}")
+
 
 @bot.command()
 async def restart(ctx):
-if not is_owner(ctx):
-return await ctx.send("❌ Not allowed")
+    if not is_owner(ctx):
+        return await ctx.send("❌ Not allowed")
 
-r = requests.post(
-    f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
-    headers=HEADERS,
-    json={"signal": "restart"}
-)
+    r = requests.post(
+        f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
+        headers=HEADERS,
+        json={"signal": "restart"}
+    )
 
-await ctx.send(
-    "🔄 Server restarting!"
-    if r.status_code in [200, 204]
-    else f"❌ Error: {r.status_code}"
-)
+    if r.status_code in [200, 204]:
+        await ctx.send("🔄 Server restarting!")
+    else:
+        await ctx.send(f"❌ Error: {r.status_code}")
+
 
 @bot.command()
 async def cmd(ctx, *, command):
-if not is_owner(ctx):
-return await ctx.send("❌ Not allowed")
+    if not is_owner(ctx):
+        return await ctx.send("❌ Not allowed")
 
-r = requests.post(
-    f"{PANEL_URL}/api/client/servers/{SERVER_ID}/command",
-    headers=HEADERS,
-    json={"command": command}
-)
+    r = requests.post(
+        f"{PANEL_URL}/api/client/servers/{SERVER_ID}/command",
+        headers=HEADERS,
+        json={"command": command}
+    )
 
-if r.status_code in [200, 204]:
-    await ctx.send(f"✅ Executed: `{command}`")
-else:
-    await ctx.send(f"❌ Error: {r.status_code}")
+    if r.status_code in [200, 204]:
+        await ctx.send(f"✅ Executed: `{command}`")
+    else:
+        await ctx.send(f"❌ Error: {r.status_code}")
+
 
 bot.run(TOKEN)
