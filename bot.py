@@ -2,8 +2,10 @@ import discord
 from discord.ext import commands
 import requests
 
-TOKEN = "YOUR_BOT_TOKEN"
-PTERO_API = "YOUR_PTERODACTYL_API_KEY"
+import os
+
+TOKEN = os.getenv("TOKEN")
+PTERO_API = os.getenv("PTERO_API")
 
 PANEL_URL = "https://panel.halix-free.xyz"
 SERVER_ID = "83c544fd"
