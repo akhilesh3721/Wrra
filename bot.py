@@ -55,7 +55,7 @@ async def update_status():
 
     global status_message
 
-    channel = bot.get_channel(STATUS_CHANNEL_ID)
+    channel = await bot.fetch_channel(STATUS_CHANNEL_ID)
 
     try:
         server = JavaServer.lookup("free-us4.halix.cloud:19529")
@@ -91,12 +91,14 @@ async def update_status():
             inline=False
         )
 
-    except:
-        embed = discord.Embed(
-            title="🔴 WRRA SMP",
-            description="Server Offline",
-            color=0xff0000
-        )
+    except Exception as e:
+    print(f"STATUS ERROR: {e}")
+
+    embed = discord.Embed(
+        title="🔴 WRRA SMP",
+        description="Server Offline",
+        color=0xff0000
+    )
 
     if status_message is None:
         status_message = await channel.send(embed=embed)
@@ -107,6 +109,9 @@ async def update_status():
             status_message = await channel.send(embed=embed)
 @bot.event
 async def on_message(message):
+    if message.author.bot:
+        return
+
     print(f"MESSAGE RECEIVED: {message.content}")
     await bot.process_commands(message)
 @bot.event
