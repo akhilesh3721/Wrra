@@ -94,10 +94,10 @@ async def update_status():
     except Exception as e:
         print(f"STATUS ERROR: {e}")
 
-    embed = discord.Embed(
-        title="🔴 WRRA SMP",
-        description="Server Offline",
-        color=0xff0000
+        embed = discord.Embed(
+            title="🔴 WRRA SMP",
+            description="Server Offline",
+            color=0xff0000
     )
 
     if status_message is None:
