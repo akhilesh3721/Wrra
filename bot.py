@@ -14,7 +14,11 @@ OWNER_ID = 1365256422585274398
 intents = discord.Intents.default()
 intents.message_content = True
 
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(
+    command_prefix="!",
+    intents=intents,
+    help_command=None
+)
 
 HEADERS = {
 "Authorization": f"Bearer {PTERO_API}",
