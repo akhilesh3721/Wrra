@@ -149,7 +149,7 @@ async def serverstatus(ctx):
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user}")
-
+    print("READY EVENT FIRED")
     if not update_status.is_running():
         update_status.start()
 @bot.command()
