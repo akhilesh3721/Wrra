@@ -9,7 +9,7 @@ PTERO_API = os.getenv("PTERO_API")
 PANEL_URL = "https://panel.halix-free.xyz"
 SERVER_ID = "83c544fd"
 
-OWNER_ID = YOUR_DISCORD_USER_ID
+OWNER_ID = 1365256422585274398
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -23,15 +23,15 @@ HEADERS = {
 }
 
 def is_owner(ctx):
-return ctx.author.id == OWNER_ID
+    return ctx.author.id == OWNER_ID
 
 @bot.event
 async def on_ready():
-print(f"Logged in as {bot.user}")
+    print(f"Logged in as {bot.user}")
 
 @bot.command()
 async def ping(ctx):
-await ctx.send(f"🏓 Pong! "{round(bot.latency * 1000)}ms"")
+    await ctx.send(f"🏓 Pong! "{round(bot.latency * 1000)}ms"")
 
 @bot.command()
 async def help(ctx):
