@@ -274,5 +274,5 @@ async def cmd(ctx, *, command):
     else:
         await ctx.send(f"❌ Error: {r.status_code}")
 
-
+keep_alive()
 bot.run(TOKEN)
