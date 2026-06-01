@@ -156,15 +156,14 @@ async def serverstatus(ctx):
 
 @bot.event
 async def on_ready():
-    print(f"Logged in as {bot.user}")
-    print("READY EVENT FIRED")
+    print(f"Logged in as {bot.user}", flush=True)
+    print("READY EVENT FIRED", flush=True)
     if not update_status.is_running():
         update_status.start()
 @bot.command()
 async def ping(ctx):
+    print("PING COMMAND USED")
     await ctx.send(f"🏓 Pong! {round(bot.latency * 1000)}ms")
-
-
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(
