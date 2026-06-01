@@ -105,6 +105,13 @@ async def update_status():
             await status_message.edit(embed=embed)
         except:
             status_message = await channel.send(embed=embed)
+@bot.event
+async def on_message(message):
+    print(f"MESSAGE RECEIVED: {message.content}")
+    await bot.process_commands(message)
+@bot.event
+async def on_command_error(ctx, error):
+    print(f"COMMAND ERROR: {error}")
 @bot.command()
 async def serverstatus(ctx):
     try:
