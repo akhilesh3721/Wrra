@@ -92,7 +92,7 @@ async def update_status():
         )
 
     except Exception as e:
-    print(f"STATUS ERROR: {e}")
+        print(f"STATUS ERROR: {e}")
 
     embed = discord.Embed(
         title="🔴 WRRA SMP",
