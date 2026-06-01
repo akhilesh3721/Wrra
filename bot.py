@@ -3,9 +3,8 @@ import discord
 from discord.ext import commands
 import requests
 
-TOKEN = os.getenv("TOKEN")
-PTERO_API = os.getenv("PTERO_API")
-
+TOKEN = "MTUxMDg0Njk1NTQwMjY5MDU3MA.GvLH-k.bVzCj1LNMb1HbjcnYKBmx2NJvKmLX_IFs45GzE"
+PTERO_API = "ptlc_tlX8g7pTh9YamllQzEF8bUWVkWtFrkLMzR809UfmHea"
 PANEL_URL = "https://panel.halix-free.xyz"
 SERVER_ID = "83c544fd"
 
