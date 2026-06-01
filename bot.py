@@ -98,7 +98,7 @@ async def update_status():
             title="🔴 WRRA SMP",
             description="Server Offline",
             color=0xff0000
-    )
+        )
 
     if status_message is None:
         status_message = await channel.send(embed=embed)
