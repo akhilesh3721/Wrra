@@ -1,10 +1,13 @@
 import os
+import sys
 import discord
 from discord.ext import commands
 import requests
 from flask import Flask
 from threading import Thread
 import asyncio
+
+sys.stdout.reconfigure(line_buffering=True)
 app = Flask('')
 
 @app.route('/')
