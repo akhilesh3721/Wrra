@@ -59,7 +59,7 @@ async def update_status():
 
     try:
         server = JavaServer.lookup("free-us4.halix.cloud:19529")
-        status = server.status()
+        status = await asyncio.to_thread(server.status)
 
         embed = discord.Embed(
             title="🟢 WRRA SMP",
@@ -230,7 +230,7 @@ async def start(ctx):
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
         headers=HEADERS,
-        json={"signal": "start"}
+        json={"signal": "start"},
         timeout=10
     )
 
@@ -248,7 +248,7 @@ async def stop(ctx):
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
         headers=HEADERS,
-        json={"signal": "stop"}
+        json={"signal": "stop"},
         timeout=10
     )
 
@@ -266,7 +266,7 @@ async def restart(ctx):
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
         headers=HEADERS,
-        json={"signal": "restart"}
+        json={"signal": "restart"},
         timeout=10
     )
 
@@ -284,7 +284,7 @@ async def cmd(ctx, *, command):
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/command",
         headers=HEADERS,
-        json={"command": command}
+        json={"command": command},
         timeout=10
     )
 
