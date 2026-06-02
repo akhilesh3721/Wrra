@@ -4,7 +4,7 @@ from discord.ext import commands
 import requests
 from flask import Flask
 from threading import Thread
-
+import asyncio
 app = Flask('')
 
 @app.route('/')
