@@ -231,6 +231,7 @@ async def start(ctx):
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
         headers=HEADERS,
         json={"signal": "start"}
+        timeout=10
     )
 
     if r.status_code in [200, 204]:
@@ -248,6 +249,7 @@ async def stop(ctx):
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
         headers=HEADERS,
         json={"signal": "stop"}
+        timeout=10
     )
 
     if r.status_code in [200, 204]:
@@ -265,6 +267,7 @@ async def restart(ctx):
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
         headers=HEADERS,
         json={"signal": "restart"}
+        timeout=10
     )
 
     if r.status_code in [200, 204]:
@@ -282,6 +285,7 @@ async def cmd(ctx, *, command):
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/command",
         headers=HEADERS,
         json={"command": command}
+        timeout=10
     )
 
     if r.status_code in [200, 204]:
