@@ -165,7 +165,7 @@ async def on_ready():
         update_status.start()
 @bot.command()
 async def ping(ctx):
-    print("PING COMMAND USED")
+    print("PING COMMAND USED", flush=True)
     await ctx.send(f"🏓 Pong! {round(bot.latency * 1000)}ms")
 @bot.command()
 async def help(ctx):
