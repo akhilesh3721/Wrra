@@ -124,7 +124,7 @@ async def on_command_error(ctx, error):
 async def serverstatus(ctx):
     try:
         server = JavaServer.lookup("free-us4.halix.cloud:19529")
-        status = server.status()
+        status = await asyncio.to_thread(server.status)
 
         embed = discord.Embed(
             title="🟢 WRRA SMP",
@@ -197,7 +197,8 @@ async def help(ctx):
 async def status(ctx):
     r = requests.get(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/resources",
-        headers=HEADERS
+        headers=HEADERS,
+        timeout=10
     )
 
     if r.status_code != 200:
@@ -224,7 +225,7 @@ async def status(ctx):
 @bot.command()
 async def start(ctx):
     if not is_owner(ctx):
-        return await ctx.send("❌ Not allowed")
+        return await ctx.send("❌ Not allowed muhehehehehe 🥀")
 
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
@@ -241,7 +242,7 @@ async def start(ctx):
 @bot.command()
 async def stop(ctx):
     if not is_owner(ctx):
-        return await ctx.send("❌ Not allowed")
+        return await ctx.send("❌ Not allowed muheheheh 🥀")
 
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
