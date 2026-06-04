@@ -26,7 +26,7 @@ PTERO_API = os.getenv("PTERO_API")
 PANEL_URL = "https://panel.halix-free.xyz"
 SERVER_ID = "83c544fd"
 
-OWNER_ID = 1365256422585274398  # Your Discord User ID
+OWNER_ID = 1365256422585274398,1313747040362168393  # Your Discord User ID
 
 intents = discord.Intents.default()
 intents.message_content = True
