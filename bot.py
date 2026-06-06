@@ -28,7 +28,8 @@ SERVER_ID = "83c544fd"
 
 OWNER_IDS = [
     1365256422585274398,  # You
-    1313747040362168393   # Other owner
+    1313747040362168393,   # Other owner
+    1168049016559378475
 ]  # Your Discord User ID
 
 intents = discord.Intents.default()
