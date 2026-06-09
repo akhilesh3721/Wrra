@@ -23,7 +23,7 @@ def keep_alive():
 TOKEN = os.getenv("TOKEN")
 PTERO_API = os.getenv("PTERO_API")
 
-PANEL_URL = "https://meowlix.org"
+PANEL_URL = "https://meowlix.org/account"
 SERVER_ID = "83c544fd"
 
 OWNER_IDS = [
