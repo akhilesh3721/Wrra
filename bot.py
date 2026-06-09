@@ -3,23 +3,12 @@ import sys
 import discord
 from discord.ext import commands
 import requests
-from flask import Flask
-from threading import Thread
 import asyncio
 
 sys.stdout.reconfigure(line_buffering=True)
-app = Flask('')
 
-@app.route('/')
-def home():
-    return "WRRA BOT ONLINE"
 
-def run_web():
-    app.run(host='0.0.0.0', port=10000)
 
-def keep_alive():
-    t = Thread(target=run_web)
-    t.start()
 TOKEN = os.getenv("TOKEN")
 PTERO_API = os.getenv("PTERO_API")
 
@@ -479,5 +468,4 @@ async def cmd_slash(interaction: discord.Interaction, command: str):
         )
 
 
-keep_alive()
 bot.run(TOKEN)
