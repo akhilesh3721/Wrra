@@ -216,6 +216,9 @@ async def status(ctx):
         headers=HEADERS,
         timeout=10
     )
+    print(f"REQUEST URL: {PANEL_URL}/api/client/servers/{SERVER_ID}/resources", flush=True)
+    print(f"STATUS CODE: {r.status_code}", flush=True)
+    print(f"BODY: {r.text[:500]}", flush=True)
 
     if r.status_code != 200:
         return await ctx.send(f"❌ Error: {r.status_code}")
