@@ -12,7 +12,7 @@ sys.stdout.reconfigure(line_buffering=True)
 TOKEN = os.getenv("TOKEN")
 PTERO_API = os.getenv("PTERO_API")
 
-PANEL_URL = "https://meowlix.org"
+PANEL_URL = "https://freegp.meowlix.cc"
 SERVER_ID = "83c544fd"
 
 OWNER_IDS = [
