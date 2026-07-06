@@ -12,8 +12,8 @@ sys.stdout.reconfigure(line_buffering=True)
 TOKEN = os.getenv("TOKEN")
 PTERO_API = os.getenv("PTERO_API")
 
-PANEL_URL = "https://freegp.meowlix.cc"
-SERVER_ID = "83c544fd"
+PANEL_URL = "https://mcservers.in"
+SERVER_ID = "a4da2179"
 
 OWNER_IDS = [
     1365256422585274398,  # You
