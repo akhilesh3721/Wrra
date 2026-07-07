@@ -142,7 +142,7 @@ async def serverstatus(ctx):
 
         embed.add_field(
             name="🔧 Version",
-            value="Paper 26.1.2",
+            value="Paper 26.2",
             inline=False
         )
 
