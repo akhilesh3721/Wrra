@@ -13,7 +13,7 @@ TOKEN = os.getenv("TOKEN")
 PTERO_API = os.getenv("PTERO_API")
 
 PANEL_URL = "https://mcservers.in"
-SERVER_ID = "15f8df3d"
+SERVER_ID = "8ba3b86a"
 
 OWNER_IDS = [
     1365256422585274398,  # You
