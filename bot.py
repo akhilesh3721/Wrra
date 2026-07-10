@@ -54,7 +54,7 @@ async def update_status():
     channel = bot.get_channel(STATUS_CHANNEL_ID)
 
     try:
-        server = JavaServer.lookup("free-4.mcservers.in:25770")
+        server = JavaServer.lookup("free-4.mcservers.in:26494")
         status = await asyncio.to_thread(server.status)
 
         embed = discord.Embed(
