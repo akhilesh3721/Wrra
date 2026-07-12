@@ -13,7 +13,7 @@ TOKEN = os.getenv("TOKEN")
 PTERO_API = os.getenv("PTERO_API")
 
 PANEL_URL = "https://mcservers.in"
-SERVER_ID = "8ba3b86a"
+SERVER_ID = "ce84d966"
 
 OWNER_IDS = [
     1365256422585274398,  # You
@@ -54,7 +54,7 @@ async def update_status():
     channel = bot.get_channel(STATUS_CHANNEL_ID)
 
     try:
-        server = JavaServer.lookup("free-4.mcservers.in:26494")
+        server = JavaServer.lookup("free-4.mcservers.in:26699")
         status = await asyncio.to_thread(server.status)
 
         embed = discord.Embed(
@@ -83,7 +83,7 @@ async def update_status():
 
         embed.add_field(
             name="🔧 Version",
-            value="Paper 26.1.2",
+            value="Paper 26.2",
             inline=False
         )
 
