@@ -120,7 +120,7 @@ async def on_command_error(ctx, error):
 @bot.command()
 async def serverstatus(ctx):
     try:
-        server = JavaServer.lookup("free-us4.halix.cloud:19529")
+        server = JavaServer.lookup("free-3.mcservers.in:26503")
         status = await asyncio.to_thread(server.status)
 
         embed = discord.Embed(
@@ -269,7 +269,7 @@ async def stop(ctx):
 @bot.command()
 async def restart(ctx):
     if not is_owner(ctx):
-        return await ctx.send("❌ Not allowed")
+        return await ctx.send("❌ Not allowed :)")
 
     r = requests.post(
         f"{PANEL_URL}/api/client/servers/{SERVER_ID}/power",
@@ -297,7 +297,7 @@ async def cmd(ctx, *, command):
     )
 
     if r.status_code in [200, 204]:
-        await ctx.send(f"✅ Executed: `{command}`")
+        await ctx.send(f"✅ 🙂 Executed: `{command}`")
     else:
         await ctx.send(f"❌ Error: {r.status_code}")
 
@@ -345,7 +345,7 @@ async def status_slash(interaction: discord.Interaction):
 @bot.tree.command(name="serverstatus", description="Show Minecraft server status")
 async def serverstatus_slash(interaction: discord.Interaction):
     try:
-        server = JavaServer.lookup("free-us4.halix.cloud:19529")
+        server = JavaServer.lookup("free-3.mcservers.in:26503")
         status = await asyncio.to_thread(server.status)
 
         embed = discord.Embed(
