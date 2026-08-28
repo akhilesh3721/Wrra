@@ -41,9 +41,9 @@ SERVER_ID = os.getenv("SERVER_ID", "51f45a64")
 
 # Address players actually connect to / that we poll for live status.
 # Update this one line if the address ever changes (e.g. after moving to playit.gg).
-MC_STATUS_ADDR = os.getenv("MC_STATUS_ADDR", "free-3.mcservers.in:26503")
+MC_STATUS_ADDR = os.getenv("MC_STATUS_ADDR", "Inv-2.aryncloud.in:19149")
 
-STATUS_CHANNEL_ID = int(os.getenv("STATUS_CHANNEL_ID", "1510886773012824176"))
+STATUS_CHANNEL_ID = int(os.getenv("STATUS_CHANNEL_ID", "1539325550533939341"))
 
 _default_owners = "1365256422585274398,1313747040362168393,1168049016559378475"
 _ENV_OWNER_IDS = {int(x) for x in os.getenv("OWNER_IDS", _default_owners).split(",") if x}
